@@ -38,4 +38,23 @@ export class AlumnoService {
     );
   }
 
+  public actualizarAlumno(id:number, alumno:Alumno):Observable<Alumno>{
+    return this.http.put(`${this.urlAlumno}/${id}`, alumno, {headers:this.headers}).pipe(
+      map( (response: any)=> response.alumno as Alumno),
+      catchError( e=>{
+        if(e.status ==400){
+          return throwError(()=>e);
+        }
+
+        Swal.fire(e.error.mensaje, e.error.error, "error");
+        return throwError(()=>e);
+
+      })
+    );
+  }
+
+  public eliminarAlumno(id:number){
+    return this.http.delete(`${this.urlAlumno}/${id}`, {headers:this.headers});
+  }
+
 }

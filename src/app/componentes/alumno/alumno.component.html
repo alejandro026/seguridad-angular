@@ -17,6 +17,7 @@
             <th>NOMBRE</th>
             <th>CORREO ELECTROICO</th>
             <th>FECHA DE REGISTRO</th>
+            <th>Acciones</th>
           </thead>
           <tbody>
             <tr *ngFor="let alumno of alumnos">
@@ -25,6 +26,16 @@
               <td>{{alumno.nombre}}</td>
               <td>{{alumno.email}}</td>
               <td>{{alumno.fechaRegistro}}</td>
+              <td>
+                <div class="p-1 actions"id="columnas2">
+                        <button type="button" class="btn btn-primary me-2" [routerLink]="['/alumnos/form', alumno]">
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarAlumno(alumno.idAlumno)">
+                          Eliminar
+                        </button>
+                  </div>
+              </td>
             </tr>
           </tbody>
         </table>
