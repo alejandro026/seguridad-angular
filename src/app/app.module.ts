@@ -7,12 +7,16 @@ import { AlumnoComponent } from './componentes/alumno/alumno.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './componentes/alumno/form.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlumnoComponent,
-    FormComponent
+    FormComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,

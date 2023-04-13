@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlumnoComponent } from './componentes/alumno/alumno.component';
-import { FormComponent } from './componentes/alumno/form.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/alumnos', pathMatch: 'full' },
-  { path: 'alumnos', component: AlumnoComponent},
-  { path: 'alumnos/form', component: FormComponent},
+  {
+    path: '', redirectTo: '/alumnos', pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/auth/login/login.module').then((m) => m.LoginModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
