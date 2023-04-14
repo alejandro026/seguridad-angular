@@ -51,7 +51,7 @@ export class FormComponent implements OnInit {
         Swal.fire("Alumno nuevo", `El alumno: ${alumnos.nombre} se guardo con exito`, "success")
       }, error:e=>{
         this.errores= e.error.errors as string[];
-        console.log(this.errores);
+        console.log(e);
       }
     })
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseForm } from 'src/app/shared/utils/base-form';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,12 @@ export class LoginComponent implements OnInit{
 
   loginForm= this.fb.group({
     username: ["", Validators.required],
-    password: ["", Validators.required, Validators.minLength(2)]
+    password: ["", [Validators.required, Validators.minLength(2)]]
   })
 
   constructor(private fb:FormBuilder,
     public baseForm: BaseForm,
-    private router: Router){
+    private authSvc:AuthService){
   }
 
   ngOnInit(): void{
@@ -25,8 +26,14 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin(){
-    console.log("No funciona")
-    this.router.navigate(['home']);
+    if(this.loginForm.invalid) return;
+
+    const data= this.loginForm.value;
+
+    this.authSvc.login(data).subscribe((result)=>{
+
+    })
+
   }
 
 

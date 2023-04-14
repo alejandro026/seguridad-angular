@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckLoginGuard } from './shared/guards/check-login.guard';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/alumnos', pathMatch: 'full'
+    path: '', redirectTo: '/login', pathMatch: 'full'
   },
   {
     path: 'home',
@@ -14,7 +15,9 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./pages/auth/login/login.module').then((m) => m.LoginModule),
+      canActivate:[CheckLoginGuard]
   },
+  { path: 'alumnos', loadChildren: () => import('./pages/alumnos/alumnos.module').then(m => m.AlumnosModule) },
 ];
 
 @NgModule({
